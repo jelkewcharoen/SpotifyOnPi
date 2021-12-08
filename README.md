@@ -22,3 +22,24 @@ Singing in the Shower is a product that allows users to control the music playin
 * mbed DHT Libaray to support the DHT11 Humidity Sensor
 * Spotify API/GPIO Libaray
 * RPC Stuff?
+
+
+## Building the System
+
+To begin seeting up the mbed side of the system, import the DmTFT Library (https://os.mbed.com/users/displaymodule/code/DmTftLibrary/) into your project. This library gives the you availity to interface with a variety of different TFT LCD Libraries. For the screen used in this project, be sure the include the  DmTftIli9341.h header file. This library provides users with a variety of commands to draw on and print to the screen.
+
+
+| mbed | TFT LCD |
+
+
+
+A second library, FT6026, is needed to make use the capacative touch capabilites of the LCD screen. Import the mbed FT6026 library (https://os.mbed.com/users/JackB/code/FT6206/file/35e21af6733c/FT6206.cpp/). After than is complete, add the follwoing wiring to your display to set up an I2C bus between the screen and mbed. Capacative touch data is sent over I2C. In addition to the wiring described in the schematic above this, add the following:
+
+
+
+Once the touchscreen is wired up, the humidity sensor can also be connected to the mbed. Use the following wiring diagram.
+
+
+
+
+
