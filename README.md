@@ -16,9 +16,9 @@ DHT11 Humidity Sensor
 
 <img src="https://components101.com/sites/default/files/components/DHT11-Sensor.jpg" width="150" height="150">
 
-* Rasberry Pi 3
-* ARM mBed Microcontroller
-* Bluetooth Speaker
+Rasberry Pi 3
+ARM mBed Microcontroller
+Bluetooth Speaker
 
 ## Software
 
