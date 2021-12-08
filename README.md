@@ -49,7 +49,7 @@ A second library, FT6026, is needed to make use the capacative touch capabilites
 | p21  | IQR |
 | GND  | GND |
 
-Once the touchscreen is wired up, the humidity sensor can also be connected to the mbed. Use the following wiring diagram.
+Once the touchscreen is wired up, the humidity sensor can also be connected to the mbed. Import the DHT Library (https://os.mbed.com/users/Wimpie/code/DHT/) it interface witht the device and use the following wiring diagram.
 
 | mbed | DHT11 Humdity Sensor |
 | --- | --- |
