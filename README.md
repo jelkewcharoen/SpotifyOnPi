@@ -47,7 +47,7 @@ To begin seeting up the mbed side of the system, import the DmTFT Library (https
 | p8  | CS |
 | p10  | D/C |
 | p9 | RST |
-| 100 ohm resistor -> Vout | LITE |
+| through 100 ohm resistor to Vout | LITE |
 | Vout | IM3 |
 | Vout | IM2 |
 | Vout | IM1 |
