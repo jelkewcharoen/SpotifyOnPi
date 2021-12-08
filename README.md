@@ -52,6 +52,8 @@ To begin seeting up the mbed side of the system, import the DmTFT Library (https
 | Vout | IM2 |
 | Vout | IM1 |
 | GND | IM0 |
+| NC | CCS |
+| NC | CD |
 
 
 A second library, FT6026, is needed to make use the capacative touch capabilites of the LCD screen. Import the mbed FT6026 library (https://os.mbed.com/users/JackB/code/FT6206/file/35e21af6733c/FT6206.cpp/). After than is complete, add the follwoing wiring to your display to set up an I2C bus between the screen and mbed. Capacative touch data is sent over I2C. In addition to the wiring described in the schematic above this, add the following:
