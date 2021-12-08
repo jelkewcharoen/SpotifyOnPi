@@ -18,5 +18,6 @@ Singing in the Shower is a product that allows users to control the music playin
 
 * mbed DmTFT Libaray to support the ILI9341 Screen Controller
 * mbed FT6026 Libaray to support the FT6026 capacative touchscreen controller 
+* mbed DHT Libaray to support the DHT11 Humidity Sensor
 * Spotify API/GPIO Libaray
 * RPC Stuff?
