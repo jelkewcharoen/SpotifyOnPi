@@ -9,7 +9,7 @@ Singing in the Shower is a product that allows users to control the music playin
 ## Parts List
 
 * 2.8" Adafruit TFT LCD with Touchscreen with ILI9341 Controller and capacative touch sensing
-![alt text](https://cdn-shop.adafruit.com/970x728/1770-00.jpg | width=100)
+<img src="https://cdn-shop.adafruit.com/970x728/1770-00.jpg" width="100" height="100">
 * DHT11 Humidity Sensor
 * Rasberry Pi 3
 * ARM mBed Microcontroller
