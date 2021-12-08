@@ -26,6 +26,8 @@ Singing in the Shower is a product that allows users to control the music playin
 
 ## Building the System
 
+### mbed
+
 To begin seeting up the mbed side of the system, import the DmTFT Library (https://os.mbed.com/users/displaymodule/code/DmTftLibrary/) into your project. This library gives the you availity to interface with a variety of different TFT LCD Libraries. For the screen used in this project, be sure the include the  DmTftIli9341.h header file. This library provides users with a variety of commands to draw on and print to the screen. Note that this disply has an SPI mode and an 8-bit mode to write to the screen. The library and provided pinout is for SPI mode.
 
 
@@ -57,5 +59,13 @@ Once the touchscreen is wired up, the humidity sensor can also be connected to t
 | p20  | S |
 | GND  | GND |
 
+### Rasberry Pi
 
+### Pi - mbed GPIO Interface
+
+In order to allow the mbed to send GPIO signals to the Pi when the screen is pressed, the following connections must be made between the Pi and mbed GPIO pins
+
+| Pi | mbed |
+| --- | --- |
+| p17 | p22 |
 
