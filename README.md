@@ -83,5 +83,17 @@ In order to allow the mbed to send GPIO signals to the Pi when the screen is pre
 | --- | --- |
 | p17 | p22 |
 
+## Connecting to Spotify
+
+## User Interface
+
+When not in use, the LCD Touchscreen simply displays the name of our project - "Singing in the Shower." The temperature and humidity sensor is used to detect if the shower has turned on. At this point, the screen will switch to a display with 6 options to choose between: play, pause, skip, increase volume, decrease volume, and change playlist.
+
+(Image of the options here)
+
+When any of these options are selected, a signal is sent via GPIO to the Node Red program running on the Pi. Node red will then send the command to the connected Spotify account. The Pi will be connected to a bluetooth speaker which music will play through.
+
+If the 'Select Playlist' Option is selected, Node Red will send a list of available playlists to the mbed. A new screen will pop up with all the playlist options to choose from. Once a playlist is selected, the screen will return to displaying the default options (Pause, Skip, etc.).
+
 
 ## Video Demo
