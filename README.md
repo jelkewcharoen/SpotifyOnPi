@@ -82,6 +82,11 @@ In order to allow the mbed to send GPIO signals to the Pi when the screen is pre
 | Pi | mbed |
 | --- | --- |
 | p17 | p22 |
+| p17 | p23 |
+| p17 | p24 |
+| p17 | p25 |
+| p17 | p26 |
+| p17 | p14 |
 
 ## Connecting to Spotify
 
