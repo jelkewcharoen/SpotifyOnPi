@@ -102,3 +102,6 @@ If the 'Select Playlist' Option is selected, Node Red will send a list of availa
 
 
 ## Video Demo
+
+![image](https://github.gatech.edu/storage/user/33435/files/980a4377-1601-4ae7-baac-2e8e34ec0829)
+
