@@ -96,6 +96,8 @@ When not in use, the LCD Touchscreen simply displays the name of our project - "
 
 (Image of the options here)
 
+(Image of the humidity/temp sensor on the bottom here)
+
 When any of these options are selected, a signal is sent via GPIO to the Node Red program running on the Pi. Node red will then send the command to the connected Spotify account. The Pi will be connected to a bluetooth speaker which music will play through.
 
 If the 'Select Playlist' Option is selected, Node Red will send a list of available playlists to the mbed. A new screen will pop up with all the playlist options to choose from. Once a playlist is selected, the screen will return to displaying the default options (Pause, Skip, etc.).
@@ -105,4 +107,4 @@ If the 'Select Playlist' Option is selected, Node Red will send a list of availa
 
 Demo Number One: https://youtu.be/mLpKBZplPH4 (Temperature/Humidity Sensor Activating the Screen)
 
-Demo Number Two: https://youtu.be/xb4JrIlmrYs (Spotify Integatation)
+Demo Number Two: https://youtu.be/xb4JrIlmrYs (Spotify Integration)
