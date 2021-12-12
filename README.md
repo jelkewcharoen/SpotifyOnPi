@@ -102,7 +102,7 @@ If the 'Select Playlist' Option is selected, Node Red will send a list of availa
 
 
 ## Video Demo
-<img src="https://github.gatech.edu/storage/user/33435/files/980a4377-1601-4ae7-baac-2e8e34ec0829" width="200" height="150">
 
-![image](https://github.gatech.edu/storage/user/33435/files/980a4377-1601-4ae7-baac-2e8e34ec0829)
+Demo Number One: https://youtu.be/mLpKBZplPH4 (Temperature/Humidity Sensor Activating the Screen)
 
+Demo Number Two: https://youtu.be/xb4JrIlmrYs (Spotify Integatation)
