@@ -75,6 +75,14 @@ Once the touchscreen is wired up, the humidity sensor can also be connected to t
 
 ### Rasberry Pi
 
+Pi is controlled using Node-red
+
+### Node-red
+
+We use Node-red Spotify library to connect to the spotify server, as well as GPIO and Serial port libraries to communicate with Mbed. Below is a screen capture of the Node-red flow. The Json file of this flow is also included in this repository.
+
+<img width="632" alt="Screen Shot 2021-12-13 at 1 08 22 AM" src="https://github.gatech.edu/storage/user/39303/files/df3279e2-4d6f-4ee6-ad82-516a821299ad">
+
 ### Pi - mbed GPIO Interface
 
 In order to allow the mbed to send GPIO signals to the Pi when the screen is pressed, the following connections must be made between the Pi and mbed GPIO pins
@@ -90,13 +98,19 @@ In order to allow the mbed to send GPIO signals to the Pi when the screen is pre
 
 ## Connecting to Spotify
 
+Librespot Spotify Client Open Source library is used to create a Spotify client for a specified account on Pi.
+
 ## User Interface
 
 When not in use, the LCD Touchscreen simply displays the name of our project - "Singing in the Shower Assistant." The temperature and humidity sensor is used to detect if the shower has turned on. At this point, the screen will switch to a display with 6 options to choose between: play, pause, skip, increase volume, decrease volume, and change playlist.
 
-(Image of the options here)
+![IMG_1572](https://github.gatech.edu/storage/user/39303/files/53a6287a-43f4-4171-883d-94454a20c97a)
+![IMG_1571](https://github.gatech.edu/storage/user/39303/files/001f22de-0f62-457c-9f8d-8d6743354081)
 
-(Image of the humidity/temp sensor on the bottom here)
+
+![IMG_1565](https://github.gatech.edu/storage/user/39303/files/7e6221cc-dd99-4cde-8563-77a002ed1462)
+
+![IMG_1566](https://github.gatech.edu/storage/user/39303/files/d0f0ec3d-1ecb-450f-a111-36ef19c5ef00)
 
 When any of these options are selected, a signal is sent via GPIO to the Node Red program running on the Pi. Node Red will then send the command to the connected Spotify account. The Pi will be connected to a Bluetooth speaker which music will play through.
 
