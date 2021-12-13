@@ -4,7 +4,7 @@ Group Members: Anna Carow and Jel Kewcharoen
 
 ## Concept
 
-Singing in the Shower is a product that allows users to control the music playing on their Spotify account through a Bluetooth speaker using a touchscreen LCD. When you turn the shower on, the humidity and temperature sensor in the device will cause the screen to light up and prompt you if you want to begin playing music. From the touchscreen, you have the option to start, pause, skip, change the volume, and change the playlist. The touchscreen sends signals to a Rasberry Pi which is connected to both Spotify and a Bluetooth speaker.
+Singing in the Shower Assistant is a product that allows users to control the music playing on their Spotify account through a Bluetooth speaker using a touchscreen LCD. When you turn the shower on, the humidity and temperature sensor in the device will cause the screen to light up and prompt you if you want to begin playing music. From the touchscreen, you have the option to start, pause, skip, change the volume, and change the playlist. The touchscreen sends signals to a Rasberry Pi which is connected to both Spotify and a Bluetooth speaker.
 
 ## Parts List
 
@@ -25,8 +25,9 @@ Bluetooth Speaker
 * mbed DmTFT Library to support the ILI9341 Screen Controller
 * mbed FT6026 Library to support the FT6026 capacitive touchscreen controller 
 * mbed DHT Library to support the DHT11 Humidity Sensor
-* Spotify API/GPIO Library
-* RPC Stuff?
+* Node-red GPIO Library
+* Node-red SerialPort Library
+* Librespot Spotify Client
 
 
 ## Building the System
@@ -79,7 +80,7 @@ Pi is controlled using Node-red
 
 ### Node-red
 
-We use Node-red Spotify library to connect to the spotify server, as well as GPIO and Serial port libraries to communicate with Mbed. Below is a screen capture of the Node-red flow. The Json file of this flow is also included in this repository.
+We use a Node-red Spotify library to connect to the spotify server, as well as GPIO and Serial Port libraries to communicate with mbed. Below is a screen capture of the Node-red flow. The json file of this flow is also included in this repository.
 
 <img width="632" alt="Screen Shot 2021-12-13 at 1 08 22 AM" src="https://github.gatech.edu/storage/user/39303/files/df3279e2-4d6f-4ee6-ad82-516a821299ad">
 
@@ -110,7 +111,7 @@ A DHT11 temperature and humidity sensor is used to detect if the shower has turn
 
 <img src="https://github.gatech.edu/storage/user/39303/files/001f22de-0f62-457c-9f8d-8d6743354081" width="600">
 
-When temperature and humidity reach the set critical values that indicate the shower is on, the screen will switch to a display with 6 options to choose between: play, pause, skip, increase volume, decrease volume, and change playlist. When any of these options are selected, a signal is sent via GPIO to the Node Red program running on the Pi. Node Red will then send the command to the connected Spotify account. The Pi will be connected to a Bluetooth speaker which music will play through.
+When temperature and humidity reach the set critical values that indicate the shower is on, the screen will switch to a display with 6 options to choose between: play, pause, skip, increase volume, decrease volume, and change playlist. When any of these options are selected, a signal is sent via GPIO to the Node-red program running on the Pi. Node Red will then send the command to the connected Spotify account. The Pi will be connected to a Bluetooth speaker which music will play through.
 
 <img src="https://github.gatech.edu/storage/user/39303/files/7e6221cc-dd99-4cde-8563-77a002ed1462" width="600">
 
