@@ -1,0 +1,882 @@
+[
+    {
+        "id": "8c968308.66e1d",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "dd4bfe07.f78b6",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "play",
+        "auth": "1ef17edb774c3e8b",
+        "api": "play",
+        "x": 570,
+        "y": 240,
+        "wires": [
+            [
+                "06933d4a6ac2973b"
+            ]
+        ]
+    },
+    {
+        "id": "f41643ac.c89a7",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "stop",
+        "auth": "1ef17edb774c3e8b",
+        "api": "pause",
+        "x": 570,
+        "y": 300,
+        "wires": [
+            [
+                "30c18820ab588027"
+            ]
+        ]
+    },
+    {
+        "id": "e2ebc3f1.36ce4",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "skip",
+        "auth": "1ef17edb774c3e8b",
+        "api": "skipToNext",
+        "x": 430,
+        "y": 360,
+        "wires": [
+            [
+                "30c18820ab588027"
+            ]
+        ]
+    },
+    {
+        "id": "48111d1c.a06854",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "move to pi",
+        "auth": "1ef17edb774c3e8b",
+        "api": "transferMyPlayback",
+        "x": 790,
+        "y": 160,
+        "wires": [
+            [
+                "e362ba38f3c22950",
+                "06933d4a6ac2973b"
+            ]
+        ]
+    },
+    {
+        "id": "6916f5ed.e1d63c",
+        "type": "function",
+        "z": "8c968308.66e1d",
+        "name": "set id",
+        "func": "var devices = msg.payload.devices;\nvar deviceID;\ndevices.forEach(myFunction)\nmsg.params = [[deviceID], {play: 'true'}];\nglobal.set(\"play\", true);\nreturn msg;\n\nfunction myFunction(device){\n    if(device.name == \"librespot_server\"){\n        deviceID = device.id;\n    }\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 160,
+        "wires": [
+            [
+                "48111d1c.a06854"
+            ]
+        ]
+    },
+    {
+        "id": "5d285dd7.14bff4",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "get current state",
+        "auth": "1ef17edb774c3e8b",
+        "api": "getMyCurrentPlaybackState",
+        "x": 340,
+        "y": 420,
+        "wires": [
+            [
+                "53c6d863.68d048"
+            ]
+        ]
+    },
+    {
+        "id": "53c6d863.68d048",
+        "type": "function",
+        "z": "8c968308.66e1d",
+        "name": "",
+        "func": "var vol = parseInt(msg.payload.device.volume_percent);\nif(vol-10 <0){\n    vol=0;\n    node.log(\"decreasing vol\");\n}\nelse\n{\n    vol -= 10;\n}\nmsg.params = [vol];\nnode.log(vol);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 420,
+        "wires": [
+            [
+                "1a945a08.9bd9d6"
+            ]
+        ]
+    },
+    {
+        "id": "1a945a08.9bd9d6",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "set vol",
+        "auth": "d34a66079b178b13",
+        "api": "setVolume",
+        "x": 750,
+        "y": 440,
+        "wires": [
+            [
+                "30c18820ab588027"
+            ]
+        ]
+    },
+    {
+        "id": "de856f53.1fd57",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "get current state",
+        "auth": "1ef17edb774c3e8b",
+        "api": "getMyCurrentPlaybackState",
+        "x": 340,
+        "y": 480,
+        "wires": [
+            [
+                "cb0aa8fc.2b7128"
+            ]
+        ]
+    },
+    {
+        "id": "cb0aa8fc.2b7128",
+        "type": "function",
+        "z": "8c968308.66e1d",
+        "name": "",
+        "func": "var vol = parseInt(msg.payload.device.volume_percent);\nif(vol+10 > 100){\n    vol=100;\n}\nelse\n{\n    vol += 10;\n}\nmsg.params = [vol];\nnode.log(vol);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 480,
+        "wires": [
+            [
+                "1a945a08.9bd9d6"
+            ]
+        ]
+    },
+    {
+        "id": "e25f8e5ee23fb243",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "get current state",
+        "auth": "1ef17edb774c3e8b",
+        "api": "getMyDevices",
+        "x": 500,
+        "y": 160,
+        "wires": [
+            [
+                "6916f5ed.e1d63c"
+            ]
+        ]
+    },
+    {
+        "id": "08ac0941c62608ce",
+        "type": "rpi-gpio in",
+        "z": "8c968308.66e1d",
+        "name": "skip",
+        "pin": "18",
+        "intype": "down",
+        "debounce": "500",
+        "read": false,
+        "bcm": true,
+        "x": 90,
+        "y": 360,
+        "wires": [
+            [
+                "e2ebc3f1.36ce4"
+            ]
+        ]
+    },
+    {
+        "id": "7155f927747d4eec",
+        "type": "exec",
+        "z": "8c968308.66e1d",
+        "command": "librespot -u 21aq7fvpymhbbxgi2pblhyrwq -p Jelklm16388* -n librespot_server --initial-volume 50",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "true",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 660,
+        "y": 80,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "307968a1f411a405",
+        "type": "delay",
+        "z": "8c968308.66e1d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 340,
+        "y": 160,
+        "wires": [
+            [
+                "e25f8e5ee23fb243"
+            ]
+        ]
+    },
+    {
+        "id": "56dc659b8b65cc56",
+        "type": "rpi-gpio in",
+        "z": "8c968308.66e1d",
+        "name": "play",
+        "pin": "24",
+        "intype": "down",
+        "debounce": "500",
+        "read": false,
+        "bcm": true,
+        "x": 90,
+        "y": 240,
+        "wires": [
+            [
+                "43579215164c70a2",
+                "cfac7dc0b1e34aec"
+            ]
+        ]
+    },
+    {
+        "id": "249f01a03d4f4adf",
+        "type": "rpi-gpio in",
+        "z": "8c968308.66e1d",
+        "name": "decrease vol",
+        "pin": "4",
+        "intype": "down",
+        "debounce": "500",
+        "read": false,
+        "bcm": true,
+        "x": 110,
+        "y": 420,
+        "wires": [
+            [
+                "5d285dd7.14bff4"
+            ]
+        ]
+    },
+    {
+        "id": "12c4a751299eb902",
+        "type": "rpi-gpio in",
+        "z": "8c968308.66e1d",
+        "name": "select playlist",
+        "pin": "25",
+        "intype": "down",
+        "debounce": "500",
+        "read": false,
+        "bcm": true,
+        "x": 110,
+        "y": 580,
+        "wires": [
+            [
+                "1792729376f427b3"
+            ]
+        ]
+    },
+    {
+        "id": "c4ec7608c3cc5c84",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "get playlists",
+        "auth": "1ef17edb774c3e8b",
+        "api": "getUserPlaylists",
+        "x": 450,
+        "y": 580,
+        "wires": [
+            [
+                "4fac6c88b6eb196e",
+                "30c18820ab588027"
+            ]
+        ]
+    },
+    {
+        "id": "ca838d758f3fc3e9",
+        "type": "inject",
+        "z": "8c968308.66e1d",
+        "name": "get songs",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "get songs",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 200,
+        "y": 1260,
+        "wires": [
+            [
+                "520f2dddd7d3fd0e"
+            ]
+        ]
+    },
+    {
+        "id": "c0289a62b3577843",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "get songs",
+        "auth": "1ef17edb774c3e8b",
+        "api": "getPlaylistTracks",
+        "x": 580,
+        "y": 1260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "520f2dddd7d3fd0e",
+        "type": "function",
+        "z": "8c968308.66e1d",
+        "name": "",
+        "func": "\nmsg.params = [global.get(\"currentPlaylist\")];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1260,
+        "wires": [
+            [
+                "c0289a62b3577843"
+            ]
+        ]
+    },
+    {
+        "id": "7d4cda857492ef89",
+        "type": "serial in",
+        "z": "8c968308.66e1d",
+        "name": "mbed-in",
+        "serial": "750586494102bc5e",
+        "x": 100,
+        "y": 660,
+        "wires": [
+            [
+                "24ea2b31d797f049",
+                "30c18820ab588027"
+            ]
+        ]
+    },
+    {
+        "id": "0d723f725536fea4",
+        "type": "serial out",
+        "z": "8c968308.66e1d",
+        "name": "mbed-out",
+        "serial": "750586494102bc5e",
+        "x": 840,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "d004b8e06f08c5c7",
+        "type": "inject",
+        "z": "8c968308.66e1d",
+        "name": "send serial data",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "send dummy string",
+        "payload": "Summer",
+        "payloadType": "str",
+        "x": 240,
+        "y": 1000,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4fac6c88b6eb196e",
+        "type": "function",
+        "z": "8c968308.66e1d",
+        "name": "",
+        "func": "var items = msg.payload.items;\nlet string = \"\";\n\n// for(let i = 0; i< 6; i++)\n// {\n    \n//     string = string.concat(\"\"+items[i].name);\n    \n//     if(i<5)\n//     {\n//         string = string.concat(\"9\");\n//     }\n// }\nstring = string.concat(items[6].name+\"9\"+items[8].name+\"9\"+items[9].name+\"9\"+items[12].name)\nstring = string.split(\" \").join(\"\");\n//string = string.split(\"+\").join(\"\");\n//string = string.toLowerCase();\nmsg.payload = string;\nmsg.topic = \"sent playlist\"\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 580,
+        "wires": [
+            [
+                "0d723f725536fea4",
+                "30c18820ab588027"
+            ]
+        ]
+    },
+    {
+        "id": "a855b73c36b838e7",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "get playlists",
+        "auth": "1ef17edb774c3e8b",
+        "api": "getUserPlaylists",
+        "x": 650,
+        "y": 660,
+        "wires": [
+            [
+                "e3ecdc5e37e89de8"
+            ]
+        ]
+    },
+    {
+        "id": "e3ecdc5e37e89de8",
+        "type": "function",
+        "z": "8c968308.66e1d",
+        "name": "Find playlist uri",
+        "func": "var items = msg.payload.items;\nvar indexes = [6,8,9,12];\n\nfor(let i = 0; i< 4; i++)\n{\n    \n    if(items[indexes[i]].name == global.get(\"currentPlaylist\"))\n    {\n        //set URI\n        msg.params = [{context_uri: items[indexes[i]].uri}, {play:true}];\n        node.log(\"found playlist\");   \n        node.log(items[indexes[i]].name);\n        \n        break;\n    }\n    else\n    {\n     node.log(\"no playlist found\");   \n     //node.log(items[indexes[i]].name);\n    }\n    //node.log(global.get(\"currentPlaylist\"));\n}\n\n\n\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 820,
+        "y": 660,
+        "wires": [
+            [
+                "0c45938a214bb29d"
+            ]
+        ]
+    },
+    {
+        "id": "0c45938a214bb29d",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "play",
+        "auth": "1ef17edb774c3e8b",
+        "api": "play",
+        "x": 970,
+        "y": 660,
+        "wires": [
+            [
+                "30c18820ab588027"
+            ]
+        ]
+    },
+    {
+        "id": "8fc3feb4dcf9999f",
+        "type": "inject",
+        "z": "8c968308.66e1d",
+        "name": "set global variable",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "send dummy string",
+        "payload": "jel\\n",
+        "payloadType": "str",
+        "x": 250,
+        "y": 1080,
+        "wires": [
+            [
+                "6f8deff5fc395f9b"
+            ]
+        ]
+    },
+    {
+        "id": "aad35a9486c3fb5e",
+        "type": "inject",
+        "z": "8c968308.66e1d",
+        "name": "select Finals playlist",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "send dummy string",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 230,
+        "y": 1160,
+        "wires": [
+            [
+                "d45082d6eedfc4cb"
+            ]
+        ]
+    },
+    {
+        "id": "d45082d6eedfc4cb",
+        "type": "function",
+        "z": "8c968308.66e1d",
+        "name": "",
+        "func": "msg.params = [{context_uri: \"spotify:playlist:6cuWX3p5Pcu29P0K9Y3op5\"}, {play:true}];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 1160,
+        "wires": [
+            [
+                "1bac80b90e2b51b2"
+            ]
+        ]
+    },
+    {
+        "id": "1bac80b90e2b51b2",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "play",
+        "auth": "1ef17edb774c3e8b",
+        "api": "play",
+        "x": 620,
+        "y": 1160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "24ea2b31d797f049",
+        "type": "function",
+        "z": "8c968308.66e1d",
+        "name": "receive playlist name",
+        "func": "var str = msg.payload;\nstr = str.substring(0, str.length - 1);\nglobal.set(\"currentPlaylist\", str);\n//global.currentPlaylist = \"hello\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 660,
+        "wires": [
+            [
+                "30c18820ab588027"
+            ]
+        ]
+    },
+    {
+        "id": "9b90f2d496af05f2",
+        "type": "complete",
+        "z": "8c968308.66e1d",
+        "name": "",
+        "scope": [
+            "24ea2b31d797f049"
+        ],
+        "uncaught": false,
+        "x": 490,
+        "y": 660,
+        "wires": [
+            [
+                "a855b73c36b838e7"
+            ]
+        ]
+    },
+    {
+        "id": "6f8deff5fc395f9b",
+        "type": "function",
+        "z": "8c968308.66e1d",
+        "name": "receive playlist name",
+        "func": "var str = msg.payload;\nstr = str.substring(0, str.length - 1);\nglobal.set(\"currentPlaylist\", str);\n//global.currentPlaylist = \"hello\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 1080,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c5ea29d00891373d",
+        "type": "rpi-gpio in",
+        "z": "8c968308.66e1d",
+        "name": "increase vol",
+        "pin": "23",
+        "intype": "down",
+        "debounce": "500",
+        "read": false,
+        "bcm": true,
+        "x": 110,
+        "y": 480,
+        "wires": [
+            [
+                "de856f53.1fd57"
+            ]
+        ]
+    },
+    {
+        "id": "e362ba38f3c22950",
+        "type": "debug",
+        "z": "8c968308.66e1d",
+        "d": true,
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "\"spotify start\"",
+        "targetType": "jsonata",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1480,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "43579215164c70a2",
+        "type": "function",
+        "z": "8c968308.66e1d",
+        "name": "if not started",
+        "func": "if(global.get(\"play\"))\n{\n    node.log(\"already started\");\n    return null;\n}\nelse \n{\n    node.log(\"play\");\n    global.set(\"play\", true);\n    msg.payload = true;\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "7155f927747d4eec",
+                "307968a1f411a405"
+            ]
+        ]
+    },
+    {
+        "id": "1b74c63be8ce6f1d",
+        "type": "rpi-gpio in",
+        "z": "8c968308.66e1d",
+        "name": "pause",
+        "pin": "17",
+        "intype": "down",
+        "debounce": "500",
+        "read": false,
+        "bcm": true,
+        "x": 90,
+        "y": 300,
+        "wires": [
+            [
+                "f41643ac.c89a7"
+            ]
+        ]
+    },
+    {
+        "id": "1792729376f427b3",
+        "type": "delay",
+        "z": "8c968308.66e1d",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 280,
+        "y": 580,
+        "wires": [
+            [
+                "c4ec7608c3cc5c84"
+            ]
+        ]
+    },
+    {
+        "id": "cfac7dc0b1e34aec",
+        "type": "function",
+        "z": "8c968308.66e1d",
+        "name": "if play",
+        "func": "if(global.get(\"play\"))\n{\n    //node.log(\"already started\");\n    msg.payload = true;\n    return msg;\n}\nelse \n{\n    node.log(\"play\");\n    global.set(\"play\", true);\n    //msg.payload = true;\n    return null;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 240,
+        "wires": [
+            [
+                "dd4bfe07.f78b6"
+            ]
+        ]
+    },
+    {
+        "id": "06933d4a6ac2973b",
+        "type": "spotify",
+        "z": "8c968308.66e1d",
+        "name": "shuffle",
+        "auth": "1ef17edb774c3e8b",
+        "api": "setShuffle",
+        "x": 930,
+        "y": 240,
+        "wires": [
+            [
+                "30c18820ab588027"
+            ]
+        ]
+    },
+    {
+        "id": "aa261a52cf846933",
+        "type": "change",
+        "z": "8c968308.66e1d",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "play",
+                "pt": "global",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 300,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7e2f1a8763b047d7",
+        "type": "inject",
+        "z": "8c968308.66e1d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 120,
+        "y": 740,
+        "wires": [
+            [
+                "aa261a52cf846933"
+            ]
+        ]
+    },
+    {
+        "id": "30c18820ab588027",
+        "type": "debug",
+        "z": "8c968308.66e1d",
+        "d": true,
+        "name": "print",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1470,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "1ef17edb774c3e8b",
+        "type": "spotify-auth",
+        "name": "SpotifyAuthAlmostAll",
+        "scope": "user-read-playback-state\nuser-modify-playback-state\nuser-read-currently-playing\nstreaming\napp-remote-control\nuser-read-playback-position\nuser-top-read\nuser-read-recently-played\nplaylist-modify-private\nplaylist-read-collaborative\nplaylist-read-private\nplaylist-modify-public"
+    },
+    {
+        "id": "d34a66079b178b13",
+        "type": "spotify-auth",
+        "name": "VolumeControl2",
+        "scope": "streaming\nuser-follow-modify\nuser-read-currently-playing\nuser-modify-playback-state"
+    },
+    {
+        "id": "750586494102bc5e",
+        "type": "serial-port",
+        "serialport": "/dev/ttyACM0",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "\\n",
+        "responsetimeout": "10000"
+    }
+]
