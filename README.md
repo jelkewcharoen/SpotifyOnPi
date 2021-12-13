@@ -27,6 +27,7 @@ Bluetooth Speaker
 * mbed DHT Library to support the DHT11 Humidity Sensor
 * Node-red GPIO Library
 * Node-red SerialPort Library
+* Node-red Spotify Library
 * Librespot Spotify Client
 
 ## System Diagram
@@ -85,7 +86,7 @@ The software on Pi is controlled using Node-red. Node-red is set up to start at 
 
 ### Node-red
 
-We use a Node-red Spotify library to connect to the spotify server, as well as GPIO and Serial Port libraries to communicate with mbed. GPIO is used when Mbed needs to send an action signal received on the LCD screen to Pi, and Serial port is used when strings, like playlist names, need to be exchanged. Below is a screen capture of the Node-red flow. The json file for this flow is also included in this repository.
+We use a Node-red Spotify library to connect to the Spotify server, as well as GPIO and Serial Port libraries to communicate with mbed. GPIO is used when mbed needs to send an action signal received on the LCD screen to Pi, and Serial Port is used when strings, like playlist names, need to be exchanged. Below is a screen capture of the Node-red flow. The json file for this flow is included in this repository.
 
 <img width="632" alt="Screen Shot 2021-12-13 at 1 08 22 AM" src="https://github.gatech.edu/storage/user/39303/files/df3279e2-4d6f-4ee6-ad82-516a821299ad">
 
@@ -93,14 +94,18 @@ We use a Node-red Spotify library to connect to the spotify server, as well as G
 
 In order to allow the mbed to send GPIO signals to the Pi when the screen is pressed, the following connections must be made between the Pi and mbed GPIO pins. Each pin corresponds to different actions: play, pause, skip, decrease volume, increase volume, and select a playlist.
 
-| Pi | mbed |
-| --- | --- |
-| p18 | p22 |
-| p23 | p23 |
-| p24 | p24 |
-| p25 | p25 |
-| p4 | p26 |
-| p17 | p14 |
+| Pi | mbed | Action |
+| --- | --- | --- |
+| p18 | p22 | Skip |
+| p23 | p23 | Increase Volume |
+| p24 | p24 | Play |
+| p25 | p25 | Select Playlist |
+| p4 | p26 | Decrease Volume |
+| p17 | p14 | Pause |
+
+### Bluetooth
+
+With the Pi 3, creating a Bluetooth connection is straightforward. The first time a speaker is paired with the Pi, you must manually select it to be connected using the Pi GUI. However, once the device has been connected once, the Pi 3 will remember the device and connect to it automatically on start-up.
 
 ## Connecting to Spotify
 
@@ -110,7 +115,7 @@ Node-red Spotify library connects to the Spotify API and allows us to control th
 
 ## User Interface
 
-All the components are contained in a 3D printed container, with one open side for easy access, and two holes for the LCD screen and the sensors.
+All the components are contained in a 3D printed container, with one open side for easy access and two holes for the LCD screen and the sensor.
 
 When not in use, the LCD Touchscreen simply displays the name of our project - "Singing in the Shower Assistant."  
 
@@ -122,11 +127,11 @@ A DHT11 temperature and humidity sensor is used to detect if the shower has turn
 
 When the temperature and humidity reach the set critical values that indicate the shower is on, the screen will switch to a display with 6 options to choose between: play, pause, skip, increase volume, decrease volume, and change playlist. 
 
-<img src="https://github.gatech.edu/storage/user/39303/files/7e6221cc-dd99-4cde-8563-77a002ed1462" width="600">
+<img src="https://github.gatech.edu/storage/user/39303/files/7e6221cc-dd99-4cde-8563-77a002ed1462" width="500">
 
-If the 'Playlist' option is selected, Node Red will send a list of available playlists to the mbed. A new screen will pop up with the playlist options to choose from. Once a playlist is selected, mbed sends the selected playlist name back to Pi, and the screen will return to displaying the default options (Pause, Skip, etc.).
+If the 'Playlist' option is selected, Node-red will send a list of available playlists to the mbed. A new screen will pop up with the playlist options to choose from. Once a playlist is selected, mbed sends the selected playlist name back to Pi, and the screen will return to displaying the default options (Pause, Skip, etc.).
 
-<img src="https://github.gatech.edu/storage/user/39303/files/d0f0ec3d-1ecb-450f-a111-36ef19c5ef00" width="600">
+<img src="https://github.gatech.edu/storage/user/39303/files/d0f0ec3d-1ecb-450f-a111-36ef19c5ef00" width="500">
 
 ## Video Demo
 
