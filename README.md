@@ -4,7 +4,7 @@ Group Members: Anna Carow and Jel Kewcharoen
 
 ## Concept
 
-Singing in the Shower Assistant is a product that allows users to control the music playing on their Spotify account through a Bluetooth speaker using a touchscreen LCD. When you turn the shower on, the humidity and temperature sensor in the device will cause the screen to light up and prompt you if you want to begin playing music. From the touchscreen, you have the option to start, pause, skip, change the volume, and change the playlist. The touchscreen sends signals to a Rasberry Pi which is connected to both Spotify and a Bluetooth speaker.
+Singing in the Shower Assistant is a product that allows users to control the music playing on their Spotify account through a Bluetooth speaker using a touchscreen LCD. When you turn the shower on, the humidity and temperature sensor in the device will cause the screen to light up and allow you begin controlling music. From the touchscreen, you have the option to start, pause, skip, change the volume, and change the playlist. The touchscreen sends signals to a Rasberry Pi which is connected to both Spotify server and a Bluetooth speaker.
 
 ## Parts List
 
@@ -81,17 +81,17 @@ Once the touchscreen is wired up, the humidity sensor can also be connected to t
 
 ### Rasberry Pi
 
-Pi is controlled using Node-red
+The software on Pi is controlled using Node-red. Node-red is set up to start at reboot.
 
 ### Node-red
 
-We use a Node-red Spotify library to connect to the spotify server, as well as GPIO and Serial Port libraries to communicate with mbed. Below is a screen capture of the Node-red flow. The json file of this flow is also included in this repository.
+We use a Node-red Spotify library to connect to the spotify server, as well as GPIO and Serial Port libraries to communicate with mbed. GPIO is used when Mbed needs to send an action signal received on the LCD screen to Pi, and Serial port is used when strings, like playlist names, need to be exchanged. Below is a screen capture of the Node-red flow. The json file for this flow is also included in this repository.
 
 <img width="632" alt="Screen Shot 2021-12-13 at 1 08 22 AM" src="https://github.gatech.edu/storage/user/39303/files/df3279e2-4d6f-4ee6-ad82-516a821299ad">
 
-### Pi - mbed GPIO Interface
+### Pi - Mbed GPIO Interface
 
-In order to allow the mbed to send GPIO signals to the Pi when the screen is pressed, the following connections must be made between the Pi and mbed GPIO pins
+In order to allow the mbed to send GPIO signals to the Pi when the screen is pressed, the following connections must be made between the Pi and mbed GPIO pins. Each pin corresponds to different actions: play, pause, skip, decrease volume, increase volume, and select a playlist.
 
 | Pi | mbed |
 | --- | --- |
@@ -104,7 +104,9 @@ In order to allow the mbed to send GPIO signals to the Pi when the screen is pre
 
 ## Connecting to Spotify
 
-Librespot Spotify Client Open Source library is used to create a Spotify client for a specified account on Pi.
+Librespot Spotify Client Open Source library is used to create a Spotify client for a specified account on Pi. When selecting play for the first time, Pi will execute a command to create a Spotify client server on Pi. This allows us to play music solely on the Pi and not on a smartphone. 
+
+Node-red Spotify library connects to the Spotify API and allows us to control the Spotify account. Before playing any music, the account playback will need to be transferred to the newly create client/device, which is the Raspberry Pi. Since Pi is automatically connected to the Bluetooth speaker that we previously set up, the music will go to the speaker right away. 
 
 ## User Interface
 
@@ -116,12 +118,11 @@ A DHT11 temperature and humidity sensor is used to detect if the shower has turn
 
 <img src="https://github.gatech.edu/storage/user/39303/files/001f22de-0f62-457c-9f8d-8d6743354081" width="600">
 
-When temperature and humidity reach the set critical values that indicate the shower is on, the screen will switch to a display with 6 options to choose between: play, pause, skip, increase volume, decrease volume, and change playlist. When any of these options are selected, a signal is sent via GPIO to the Node-red program running on the Pi. Node Red will then send the command to the connected Spotify account. The Pi will be connected to a Bluetooth speaker which music will play through.
+When the temperature and humidity reach the set critical values that indicate the shower is on, the screen will switch to a display with 6 options to choose between: play, pause, skip, increase volume, decrease volume, and change playlist. 
 
 <img src="https://github.gatech.edu/storage/user/39303/files/7e6221cc-dd99-4cde-8563-77a002ed1462" width="600">
 
-
-If the 'Playlist' option is selected, Node Red will send a list of available playlists to the mbed. A new screen will pop up with the playlist options to choose from. Once a playlist is selected, the screen will return to displaying the default options (Pause, Skip, etc.).
+If the 'Playlist' option is selected, Node Red will send a list of available playlists to the mbed. A new screen will pop up with the playlist options to choose from. Once a playlist is selected, mbed sends the selected playlist name back to Pi, and the screen will return to displaying the default options (Pause, Skip, etc.).
 
 <img src="https://github.gatech.edu/storage/user/39303/files/d0f0ec3d-1ecb-450f-a111-36ef19c5ef00" width="600">
 
