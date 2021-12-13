@@ -4,7 +4,7 @@ Group Members: Anna Carow and Jel Kewcharoen
 
 ## Concept
 
-Singing in the Shower is a product that allows users to control the music playing on their Spotify account through a Bluetooth speaker using a waterproof touchscreen. When you turn the shower on, the humidity and temperature sensor in the device will cause the screen to light up and prompt you if you want to begin playing music. From the touchscreen, you will have the option to start, pause, skip, change the volume, and change the playlist. The touchscreen will send signals to the Rasberry Pi, which is connected to both Spotify and a Bluetooth speaker.
+Singing in the Shower is a product that allows users to control the music playing on their Spotify account through a Bluetooth speaker using a touchscreen LCD. When you turn the shower on, the humidity and temperature sensor in the device will cause the screen to light up and prompt you if you want to begin playing music. From the touchscreen, you have the option to start, pause, skip, change the volume, and change the playlist. The touchscreen sends signals to a Rasberry Pi which is connected to both Spotify and a Bluetooth speaker.
 
 ## Parts List
 
@@ -33,7 +33,7 @@ Bluetooth Speaker
 
 ### mbed
 
-To begin setting up the mbed side of the system, import the DmTFT Library (https://os.mbed.com/users/displaymodule/code/DmTftLibrary/) into your project. This library gives the you ability to interface with a variety of different TFT LCD Libraries. For the screen used in this project, be sure the include the  DmTftIli9341.h header file. This library provides users with a variety of commands to draw on and print to the screen. Note that this display has an SPI mode and an 8-bit mode to write to the screen. The library and provided pinout are for SPI mode.
+To begin setting up the mbed side of the system, import the DmTFT Library (https://os.mbed.com/users/displaymodule/code/DmTftLibrary/) into your project. This library gives the you ability to interface with a variety of different TFT LCD screens. For the screen used in this project, be sure the include the  DmTftIli9341.h header file. This library provides users with a variety of commands to draw on and print to the screen. Note that this display has an SPI mode and an 8-bit mode to write to the screen. The library and provided pinout are for SPI mode.
 
 
 | mbed | TFT LCD |
@@ -92,7 +92,7 @@ In order to allow the mbed to send GPIO signals to the Pi when the screen is pre
 
 ## User Interface
 
-When not in use, the LCD Touchscreen simply displays the name of our project - "Singing in the Shower." The temperature and humidity sensor is used to detect if the shower has turned on. At this point, the screen will switch to a display with 6 options to choose between: play, pause, skip, increase volume, decrease volume, and change playlist.
+When not in use, the LCD Touchscreen simply displays the name of our project - "Singing in the Shower Assistant." The temperature and humidity sensor is used to detect if the shower has turned on. At this point, the screen will switch to a display with 6 options to choose between: play, pause, skip, increase volume, decrease volume, and change playlist.
 
 (Image of the options here)
 
@@ -100,7 +100,7 @@ When not in use, the LCD Touchscreen simply displays the name of our project - "
 
 When any of these options are selected, a signal is sent via GPIO to the Node Red program running on the Pi. Node Red will then send the command to the connected Spotify account. The Pi will be connected to a Bluetooth speaker which music will play through.
 
-If the 'Select Playlist' Option is selected, Node Red will send a list of available playlists to the mbed. A new screen will pop up with all the playlist options to choose from. Once a playlist is selected, the screen will return to displaying the default options (Pause, Skip, etc.).
+If the 'Playlist' option is selected, Node Red will send a list of available playlists to the mbed. A new screen will pop up with the playlist options to choose from. Once a playlist is selected, the screen will return to displaying the default options (Pause, Skip, etc.).
 
 
 ## Video Demo
