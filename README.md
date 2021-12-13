@@ -119,19 +119,19 @@ All the components are contained in a 3D printed container, with one open side f
 
 When not in use, the LCD Touchscreen simply displays the name of our project - "Singing in the Shower Assistant."  
 
-<img src="https://github.gatech.edu/storage/user/39303/files/53a6287a-43f4-4171-883d-94454a20c97a" width="600">
+<img src="https://github.gatech.edu/storage/user/39303/files/53a6287a-43f4-4171-883d-94454a20c97a" width="500">
 
 A DHT11 temperature and humidity sensor is used to detect if the shower has turned on.
 
-<img src="https://github.gatech.edu/storage/user/39303/files/001f22de-0f62-457c-9f8d-8d6743354081" width="600">
+<img src="https://github.gatech.edu/storage/user/39303/files/001f22de-0f62-457c-9f8d-8d6743354081" width="500">
 
 When the temperature and humidity reach the set critical values that indicate the shower is on, the screen will switch to a display with 6 options to choose between: play, pause, skip, increase volume, decrease volume, and change playlist. 
 
-<img src="https://github.gatech.edu/storage/user/39303/files/7e6221cc-dd99-4cde-8563-77a002ed1462" width="500">
+<img src="https://github.gatech.edu/storage/user/39303/files/7e6221cc-dd99-4cde-8563-77a002ed1462" width="400">
 
 If the 'Playlist' option is selected, Node-red will send a list of available playlists to the mbed. A new screen will pop up with the playlist options to choose from. Once a playlist is selected, mbed sends the selected playlist name back to Pi, and the screen will return to displaying the default options (Pause, Skip, etc.).
 
-<img src="https://github.gatech.edu/storage/user/39303/files/d0f0ec3d-1ecb-450f-a111-36ef19c5ef00" width="500">
+<img src="https://github.gatech.edu/storage/user/39303/files/d0f0ec3d-1ecb-450f-a111-36ef19c5ef00" width="400">
 
 ## Video Demo
 
