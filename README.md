@@ -104,9 +104,9 @@ Librespot Spotify Client Open Source library is used to create a Spotify client 
 
 When not in use, the LCD Touchscreen simply displays the name of our project - "Singing in the Shower Assistant." The temperature and humidity sensor is used to detect if the shower has turned on. At this point, the screen will switch to a display with 6 options to choose between: play, pause, skip, increase volume, decrease volume, and change playlist.
 
-<img src="https://github.gatech.edu/storage/user/39303/files/53a6287a-43f4-4171-883d-94454a20c97a" width="300">
-![IMG_1572](https://github.gatech.edu/storage/user/39303/files/53a6287a-43f4-4171-883d-94454a20c97a)
-![IMG_1571](https://github.gatech.edu/storage/user/39303/files/001f22de-0f62-457c-9f8d-8d6743354081)
+<img src="https://github.gatech.edu/storage/user/39303/files/53a6287a-43f4-4171-883d-94454a20c97a" width="600">
+
+<img src="https://github.gatech.edu/storage/user/39303/files/001f22de-0f62-457c-9f8d-8d6743354081" width="600">
 
 
 ![IMG_1565](https://github.gatech.edu/storage/user/39303/files/7e6221cc-dd99-4cde-8563-77a002ed1462)
