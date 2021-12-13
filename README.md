@@ -110,6 +110,8 @@ Node-red Spotify library connects to the Spotify API and allows us to control th
 
 ## User Interface
 
+All the components are contained in a 3D printed container, with one open side for easy access, and two holes for the LCD screen and the sensors.
+
 When not in use, the LCD Touchscreen simply displays the name of our project - "Singing in the Shower Assistant."  
 
 <img src="https://github.gatech.edu/storage/user/39303/files/53a6287a-43f4-4171-883d-94454a20c97a" width="600">
