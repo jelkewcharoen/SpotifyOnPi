@@ -31,6 +31,8 @@ Bluetooth Speaker
 
 ## System Diagram
 
+Below is a high-level system diagram showing how all the hardware and software components of the product interact.
+
 <img width="706" alt="Screen Shot 2021-12-13 at 10 56 16 AM" src="https://github.gatech.edu/storage/user/33435/files/14143d85-6fd3-48cc-8ea3-da2662ce4c7a">
 
 
