@@ -33,8 +33,7 @@ Bluetooth Speaker
 
 Below is a high-level system diagram showing how all the hardware and software components of the product interact.
 
-<img width="706" alt="Screen Shot 2021-12-13 at 10 56 16 AM" src="https://github.gatech.edu/storage/user/33435/files/14143d85-6fd3-48cc-8ea3-da2662ce4c7a">
-
+<img width="715" alt="Screen Shot 2021-12-13 at 11 08 04 AM" src="https://github.gatech.edu/storage/user/33435/files/27c6d8fe-4321-4ea0-9313-2429b25e660a">
 
 ## Building the System
 
