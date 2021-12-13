@@ -29,6 +29,10 @@ Bluetooth Speaker
 * Node-red SerialPort Library
 * Librespot Spotify Client
 
+## System Diagram
+
+<img width="706" alt="Screen Shot 2021-12-13 at 10 56 16 AM" src="https://github.gatech.edu/storage/user/33435/files/14143d85-6fd3-48cc-8ea3-da2662ce4c7a">
+
 
 ## Building the System
 
