@@ -108,10 +108,9 @@ When not in use, the LCD Touchscreen simply displays the name of our project - "
 
 <img src="https://github.gatech.edu/storage/user/39303/files/001f22de-0f62-457c-9f8d-8d6743354081" width="600">
 
+<img src="https://github.gatech.edu/storage/user/39303/files/7e6221cc-dd99-4cde-8563-77a002ed1462" width="600">
 
-![IMG_1565](https://github.gatech.edu/storage/user/39303/files/7e6221cc-dd99-4cde-8563-77a002ed1462)
-
-![IMG_1566](https://github.gatech.edu/storage/user/39303/files/d0f0ec3d-1ecb-450f-a111-36ef19c5ef00)
+<img src="https://github.gatech.edu/storage/user/39303/files/d0f0ec3d-1ecb-450f-a111-36ef19c5ef00" width="600">
 
 When any of these options are selected, a signal is sent via GPIO to the Node Red program running on the Pi. Node Red will then send the command to the connected Spotify account. The Pi will be connected to a Bluetooth speaker which music will play through.
 
