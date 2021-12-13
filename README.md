@@ -4,11 +4,11 @@ Group Members: Anna Carow and Jel Kewcharoen
 
 ## Concept
 
-Singing in the Shower is a product that allows users to control the music playing on their Spotify account through a bluetooth speaker using a waterproof touchscreen. When you turn the shower on, the humidity and temperature sensor in the device will cause the screen to light up and prompt you if you want to begin playing music. From the touchscreen, you will have the option to start, pause, skip, change the volume, and change the playlist. The touchscreen will send signals to the Rasberry Pi, which is connected to both spotify and a bluetooth speaker. 
+Singing in the Shower is a product that allows users to control the music playing on their Spotify account through a Bluetooth speaker using a waterproof touchscreen. When you turn the shower on, the humidity and temperature sensor in the device will cause the screen to light up and prompt you if you want to begin playing music. From the touchscreen, you will have the option to start, pause, skip, change the volume, and change the playlist. The touchscreen will send signals to the Rasberry Pi, which is connected to both Spotify and a Bluetooth speaker.
 
 ## Parts List
 
-2.8" Adafruit TFT LCD with Touchscreen with ILI9341 Controller and capacative touch sensing
+2.8" Adafruit TFT LCD with Touchscreen with ILI9341 Controller and capacitive touch sensing
 
 <img src="https://cdn-shop.adafruit.com/970x728/1770-00.jpg" width="200" height="150">
 
@@ -22,10 +22,10 @@ Bluetooth Speaker
 
 ## Software
 
-* mbed DmTFT Libaray to support the ILI9341 Screen Controller
-* mbed FT6026 Libaray to support the FT6026 capacative touchscreen controller 
-* mbed DHT Libaray to support the DHT11 Humidity Sensor
-* Spotify API/GPIO Libaray
+* mbed DmTFT Library to support the ILI9341 Screen Controller
+* mbed FT6026 Library to support the FT6026 capacitive touchscreen controller 
+* mbed DHT Library to support the DHT11 Humidity Sensor
+* Spotify API/GPIO Library
 * RPC Stuff?
 
 
@@ -33,7 +33,7 @@ Bluetooth Speaker
 
 ### mbed
 
-To begin seeting up the mbed side of the system, import the DmTFT Library (https://os.mbed.com/users/displaymodule/code/DmTftLibrary/) into your project. This library gives the you availity to interface with a variety of different TFT LCD Libraries. For the screen used in this project, be sure the include the  DmTftIli9341.h header file. This library provides users with a variety of commands to draw on and print to the screen. Note that this disply has an SPI mode and an 8-bit mode to write to the screen. The library and provided pinout is for SPI mode.
+To begin setting up the mbed side of the system, import the DmTFT Library (https://os.mbed.com/users/displaymodule/code/DmTftLibrary/) into your project. This library gives the you ability to interface with a variety of different TFT LCD Libraries. For the screen used in this project, be sure the include the  DmTftIli9341.h header file. This library provides users with a variety of commands to draw on and print to the screen. Note that this display has an SPI mode and an 8-bit mode to write to the screen. The library and provided pinout are for SPI mode.
 
 
 | mbed | TFT LCD |
@@ -56,7 +56,7 @@ To begin seeting up the mbed side of the system, import the DmTFT Library (https
 | NC | CD |
 
 
-A second library, FT6026, is needed to make use the capacative touch capabilites of the LCD screen. Import the mbed FT6026 library (https://os.mbed.com/users/JackB/code/FT6206/file/35e21af6733c/FT6206.cpp/). After than is complete, add the follwoing wiring to your display to set up an I2C bus between the screen and mbed. Capacative touch data is sent over I2C. In addition to the wiring described in the schematic above this, add the following:
+A second library, FT6026, is needed to make use of the capacitive touch capabilities of the LCD screen. Import the mbed FT6026 library (https://os.mbed.com/users/JackB/code/FT6206/file/35e21af6733c/FT6206.cpp/). After that is complete, add the following wiring to your display to set up an I2C bus between the screen and mbed. Capacitive touch data is sent over I2C. In addition to the wiring described in the schematic above this, add the following:
 
 | mbed | TFT LCD Touchscreen |
 | --- | --- |
@@ -65,7 +65,7 @@ A second library, FT6026, is needed to make use the capacative touch capabilites
 | p21  | IQR |
 | GND  | GND |
 
-Once the touchscreen is wired up, the humidity sensor can also be connected to the mbed. Import the DHT Library (https://os.mbed.com/users/Wimpie/code/DHT/) it interface witht the device and use the following wiring diagram.
+Once the touchscreen is wired up, the humidity sensor can also be connected to the mbed. Import the DHT Library (https://os.mbed.com/users/Wimpie/code/DHT/) so it can interface with the device and use the following wiring diagram:
 
 | mbed | DHT11 Humdity Sensor |
 | --- | --- |
@@ -98,7 +98,7 @@ When not in use, the LCD Touchscreen simply displays the name of our project - "
 
 (Image of the humidity/temp sensor on the bottom here)
 
-When any of these options are selected, a signal is sent via GPIO to the Node Red program running on the Pi. Node red will then send the command to the connected Spotify account. The Pi will be connected to a bluetooth speaker which music will play through.
+When any of these options are selected, a signal is sent via GPIO to the Node Red program running on the Pi. Node Red will then send the command to the connected Spotify account. The Pi will be connected to a Bluetooth speaker which music will play through.
 
 If the 'Select Playlist' Option is selected, Node Red will send a list of available playlists to the mbed. A new screen will pop up with all the playlist options to choose from. Once a playlist is selected, the screen will return to displaying the default options (Pause, Skip, etc.).
 
