@@ -4,7 +4,7 @@ Group Members: Anna Carow and Jel Kewcharoen
 
 ## Concept
 
-Singing in the Shower Assistant is a product that allows users to control the music playing on their Spotify account through a Bluetooth speaker using a touchscreen LCD. When you turn the shower on, the humidity and temperature sensor in the device will cause the screen to light up and allow you begin controlling music. From the touchscreen, you have the option to start, pause, skip, change the volume, and change the playlist. The touchscreen sends signals to a Rasberry Pi which is connected to both Spotify server and a Bluetooth speaker.
+Singing in the Shower Assistant is a product that allows users to control the music playing on their Spotify account through a Bluetooth speaker using a touchscreen LCD. When you turn the shower on, the humidity and temperature sensor in the device will cause the screen to light up and allow you begin controlling music. From the touchscreen, you have the option to start, pause, skip, change the volume, and change the playlist. The touchscreen sends signals to a Rasberry Pi which is connected to both a Spotify client and a Bluetooth speaker.
 
 ## Parts List
 
