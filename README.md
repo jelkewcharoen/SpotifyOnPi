@@ -62,7 +62,7 @@ To begin setting up the mbed side of the system, import the DmTFT Library (https
 | NC | CD |
 
 
-A second library, FT6026, is needed to make use of the capacitive touch capabilities of the LCD screen. Import the mbed FT6026 library (https://os.mbed.com/users/JackB/code/FT6206/file/35e21af6733c/FT6206.cpp/). After that is complete, add the following wiring to your display to set up an I2C bus between the screen and mbed. Capacitive touch data is sent over I2C. In addition to the wiring described in the schematic above this, add the following:
+A second library, FT6026, is needed to make use of the capacitive touch capabilities of the LCD screen. Import the mbed FT6026 library (https://os.mbed.com/users/JackB/code/FT6206/file/35e21af6733c/FT6206.cpp/). After that is complete, add the following wiring to your display to set up an I2C bus between the screen and mbed. Capacitive touch data is sent over I2C. In addition to the wiring described in the table above this, add the following:
 
 | mbed | TFT LCD Touchscreen |
 | --- | --- |
@@ -71,7 +71,7 @@ A second library, FT6026, is needed to make use of the capacitive touch capabili
 | p21  | IQR |
 | GND  | GND |
 
-Once the touchscreen is wired up, the humidity sensor can also be connected to the mbed. Import the DHT Library (https://os.mbed.com/users/Wimpie/code/DHT/) so it can interface with the device and use the following wiring diagram:
+Once the touchscreen is wired up, the humidity sensor can also be connected to the mbed. Import the DHT Library (https://os.mbed.com/users/Wimpie/code/DHT/) so it can interface with the device and use the following wiring:
 
 | mbed | DHT11 Humdity Sensor |
 | --- | --- |
