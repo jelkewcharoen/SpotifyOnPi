@@ -2,7 +2,6 @@
 #include "mbed.h"
 
 #include "DmTftIli9341.h"
-#include "DmTouch.h"
 #include "DHT.h"
 #include "FT6206.h"
 
